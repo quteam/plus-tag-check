@@ -24,6 +24,12 @@ function checkTagChange() {
                 // console.log("没有选择 tag，或 tag 重复");
                 return;
             }
+
+            if (!checkTagRules($ipt.value)) {
+                // console.log("tag 不符合规则")
+                return
+            }
+
             tempTag = $ipt.value;
             isLatestTag(tempTag);
         } else {
@@ -31,6 +37,11 @@ function checkTagChange() {
             tempTag = "";
         }
     }, 500)
+}
+
+// 检测 tag 规则
+function checkTagRules(tag) {
+    return /^r-/.test(tag)
 }
 
 // 检测最新 tag
