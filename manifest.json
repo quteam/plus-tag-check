@@ -1,0 +1,32 @@
+{
+    "manifest_version": 2,
+    "name": "Plus Check Tag",
+    "version": "1.0.0",
+    "description": "Plus 发布时检测 tag 是否最新",
+    "icons": {
+        "16": "img/icon.png",
+        "48": "img/icon.png",
+        "128": "img/icon.png"
+    },
+    "browser_action": {
+        "default_icon": "img/icon.png",
+        "default_title": "Plus 发布时检测 tag 是否最新"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "https://plus.mws.sankuai.com/",
+                "http://git.sankuai.com/"
+            ],
+            "js": [
+                "js/content-script.js"
+            ]
+        }
+    ],
+    "background": {
+        "scripts": [
+            "js/background.js"
+        ]
+    },
+    "homepage_url": "https://www.meituan.com"
+}
