@@ -8,14 +8,14 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
         .then(function (res) {
             // console.log(res);
             if (res.diffs) {
-                sendResponse({ diffCount: res.diffs.length });
+                sendResponse({ code: 200, diffCount: res.diffs.length });
             } else {
-                sendResponse({ diffCount: 0 });
+                sendResponse({ code: 100, msg: "请求出错" });
             }
         })
         .catch(function (err) {
             console.log(err);
-            sendResponse({ diffCount: 0 });
+            sendResponse({ code: 101, msg: "请求出错！" });
         })
     return true;
 });

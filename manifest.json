@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "Plus Check Tag",
-    "version": "1.0.0",
+    "version": "1.0.2",
     "description": "Plus 发布时检测 tag 是否最新",
     "icons": {
         "16": "img/icon.png",

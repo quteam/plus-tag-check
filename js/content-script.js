@@ -27,8 +27,8 @@ function checkTagChange() {
 
             if (!checkTagRules($ipt.value)) {
                 // console.log("tag 不符合规则")
-		        pageAddTips("不是r-tag");
-		        tempTag = "";
+                pageAddTips("不是r-tag");
+                tempTag = "";
                 return;
             }
 
@@ -52,10 +52,14 @@ function isLatestTag(tag) {
     chrome.runtime.sendMessage(
         params,
         function (response) {
+            cleanTips();
+            if (response.code !== 200) {
+                pageAddTips("tag检查失败,请重试");
+                return;
+            }
+
             if (response.diffCount > 0) {
                 pageAddTips("不是最新的r-tag");
-            } else {
-                cleanTips();
             }
         })
 }
@@ -90,7 +94,7 @@ function pageAddTips(tipsText) {
             $tips.setAttribute("style", "position:absolute;right:5px;top:0;color:rgba(255,0,0,0.8)");
             $parent.appendChild($tips);
         }
-	    $tips.innerText = tipsText;
+        $tips.innerText = tipsText;
 
         $ipt.style.background = "rgba(255,0,0,0.2)";
     }
