@@ -27,7 +27,9 @@ function checkTagChange() {
 
             if (!checkTagRules($ipt.value)) {
                 // console.log("tag 不符合规则")
-                return
+		        pageAddTips("不是r-tag");
+		        tempTag = "";
+                return;
             }
 
             tempTag = $ipt.value;
@@ -51,7 +53,7 @@ function isLatestTag(tag) {
         params,
         function (response) {
             if (response.diffCount > 0) {
-                pageAddTips();
+                pageAddTips("不是最新的r-tag");
             } else {
                 cleanTips();
             }
@@ -77,7 +79,7 @@ function getProject() {
 }
 
 // 页面增加提示
-function pageAddTips() {
+function pageAddTips(tipsText) {
     const $ipt = document.querySelector(".code-set-input input");
     if ($ipt) {
         const $parent = $ipt.parentElement;
@@ -85,10 +87,10 @@ function pageAddTips() {
         if (!$tips) {
             $tips = document.createElement("div");
             $tips.id = "check-tag-tips";
-            $tips.innerText = "不是最新的 tag";
             $tips.setAttribute("style", "position:absolute;right:5px;top:0;color:rgba(255,0,0,0.8)");
             $parent.appendChild($tips);
         }
+	    $tips.innerText = tipsText;
 
         $ipt.style.background = "rgba(255,0,0,0.2)";
     }
